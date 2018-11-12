@@ -1,5 +1,6 @@
 package com.example.manifest.criminalintent;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -41,5 +42,10 @@ public class Crime {
 
     public void setSolved(boolean solved) {
         this.solved = solved;
+    }
+
+    public String getFormattedDate() {
+        SimpleDateFormat format = new SimpleDateFormat("E, MMM d, YYYY");
+        return format.format(date);
     }
 }
