@@ -9,7 +9,7 @@ import java.util.UUID;
 public class CrimeLab {
     private static CrimeLab crimeLab;
 
-    private static List<Crime> crimes;
+    private List<Crime> crimes;
 
     public static CrimeLab get(Context context) {
         if (crimeLab == null) {
@@ -28,11 +28,11 @@ public class CrimeLab {
         }
     }
 
-    public static List<Crime> getCrimes() {
+    public List<Crime> getCrimes() {
         return crimes;
     }
 
-    public static Crime getCrime(UUID id) {
+    public Crime getCrime(UUID id) {
         for (Crime c : crimes) {
             if (c.getId().equals(id)) {
                 return c;
