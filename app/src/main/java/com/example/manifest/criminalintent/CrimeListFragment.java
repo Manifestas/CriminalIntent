@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -28,16 +27,23 @@ public class CrimeListFragment extends Fragment {
         crimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         crimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        updateUi();
-
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUi();
     }
 
     private void updateUi() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
-        adapter = new CrimeAdapter(crimeLab.getCrimes());
-        crimeRecyclerView.setAdapter(adapter);
-
+        if (adapter == null) {
+            adapter = new CrimeAdapter(crimeLab.getCrimes());
+            crimeRecyclerView.setAdapter(adapter);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
     }
 
 
